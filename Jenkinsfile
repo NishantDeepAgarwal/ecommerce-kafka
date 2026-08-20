@@ -22,11 +22,9 @@ pipeline {
     }
 
     post {
-
         success {
             echo 'Maven build completed successfully.'
         }
-
         failure {
             echo 'Maven build failed.'
         }
