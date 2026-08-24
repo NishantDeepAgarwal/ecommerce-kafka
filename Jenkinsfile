@@ -19,6 +19,17 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
+
+        stage('Build Docker Image') {
+
+                    when {
+                        branch 'main'
+                    }
+
+                    steps {
+                        bat 'docker build -t ecommerce-order-service:latest ./order-service'
+                    }
+        }
     }
 
     post {
