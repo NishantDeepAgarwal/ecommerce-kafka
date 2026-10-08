@@ -23,7 +23,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers(HttpMethod.GET,"/orders").permitAll()
-                            .requestMatchers(HttpMethod.POST,"/orders/admin/create").permitAll()
+                            .requestMatchers(HttpMethod.POST,"/orders/register/admin").permitAll()
                                 .requestMatchers(HttpMethod.POST,"/orders/register").permitAll()
                                 .requestMatchers(HttpMethod.POST,"/orders/login").permitAll()
                                 .anyRequest().authenticated()
@@ -36,6 +36,5 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
 
 }

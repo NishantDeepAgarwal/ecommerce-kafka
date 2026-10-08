@@ -61,10 +61,10 @@ public class OrderController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/admin/create")
-    public ResponseEntity<UserResponse> registerByAdmin(@RequestBody RegisterUserRequest registerUserRequest){
+    @PostMapping("/register/admin")
+    public ResponseEntity<String> registerByAdmin(@RequestBody RegisterUserRequest registerUserRequest){
         UserResponse userResponse = userService.registerUser(registerUserRequest);
-        return ResponseEntity.ok(userResponse);
+        return ResponseEntity.ok("admin user registered successfully:");
     }
 
     @PostMapping("/login")
