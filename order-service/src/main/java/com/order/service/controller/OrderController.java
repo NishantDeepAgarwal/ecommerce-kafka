@@ -32,6 +32,7 @@ public class OrderController {
                 .body(orderService.createOrder(request));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/bulk")
     public ResponseEntity<BulkOrderResponse> bulkUpload(
             @RequestBody BulkOrderRequest request) {
@@ -55,16 +56,9 @@ public class OrderController {
 
     @PostMapping("/register")
     public ResponseEntity<UserResponse> registerUser(@RequestBody RegisterUserRequest registerUserRequest){
-        registerUserRequest.setRole(Role.USER);
+//        registerUserRequest.setRole(Role.USER);
         UserResponse userResponse = userService.registerUser(registerUserRequest);
         return ResponseEntity.ok(userResponse);
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/register/admin")
-    public ResponseEntity<String> registerByAdmin(@RequestBody RegisterUserRequest registerUserRequest){
-        UserResponse userResponse = userService.registerUser(registerUserRequest);
-        return ResponseEntity.ok("admin user registered successfully:");
     }
 
     @PostMapping("/login")
